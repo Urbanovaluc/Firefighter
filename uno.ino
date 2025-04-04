@@ -11,12 +11,6 @@ na mq4 senzor zemního plynu jsme se vykašlali protože je to prakticky to sam�
 #include <OneWire.h>
 #include <DallasTemperature.h>
 
-
-const float RL_VALUE = 5.0; 
-const float RO_CLEAN_AIR_FACTOR = 9.6;
-float Ro = 10.0; 
-SoftwareSerial mySerial(0, 1); // RX, TX
-
 /** 
 ########################################################
 senzory napojit na arduino uno na níže specifikované piny
@@ -40,6 +34,10 @@ const int dOut = 3; // dialog pin
 
 //#########################################################
 
+const float RL_VALUE = 5.0; 
+const float RO_CLEAN_AIR_FACTOR = 9.6;
+float Ro = 10.0; 
+SoftwareSerial mySerial(0, 1); // RX, TX
 OneWire oneWire(pinCidlaDS);
 DallasTemperature senzors(&oneWire);
 float sensor_volt;//MQ9
@@ -84,9 +82,8 @@ int InfraSenzor()
   }
   return prepocet;
 }
-bool Ohen() {
-  ohen = !ohen;
-  return ohen;
+void Ohen() {
+  ohen = true
 }
 float MQ2()
 {
@@ -96,8 +93,7 @@ float MQ2()
   return mq2V;
 }
 bool MQ2Plyn(){
- plyn = !plyn;
- return plyn;
+  plyn = true
 }
 float calibrateMQ9Sensor() {
   float RS_AIR = 0;
@@ -117,9 +113,8 @@ float readMQ9() {
   float RS = (5.0 - voltage) / voltage * RL_VALUE;  // Calculate sensor resistance
   return RS;
 }
-bool MQ9Plyn() {
-co= !co;
-return co;
+void MQ9Plyn() {
+  co = true
 }
 
 
@@ -135,6 +130,9 @@ float Teplomer()
   return teplota;
  }
 void vypisHodnoty() {
+  ohen = false
+  plyn = false
+  co = false
   float infra = InfraSenzor();
   float mq2 = MQ2();
   float mq4 = MQ4();
@@ -144,9 +142,9 @@ void vypisHodnoty() {
   // Calculate CO concentration in ppm using datasheet formula
   float mq9 = pow(10, ((-0.47 * log10(ratio)) + 1.32));
   teplota = Teplomer();
-  ohen = Ohen();
-  plyn = MQ2Plyn();
-  co = MQ9Plyn();
+  //ohen = Ohen(); funkce je volana sama v attachinteruptu
+  //plyn = MQ2Plyn(); funkce je volana sama v attachinteruptu
+  //co = MQ9Plyn(); funkce je volana sama v attachinteruptu
   
   delay(2000); // Odesílání každé 2 sekundy
 
