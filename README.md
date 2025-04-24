@@ -29,6 +29,8 @@ Za použití arduino senzorů:
 napojených na desku Arduino UNO a posílající data přes WiFi z ESP8266 na webový server.
 Zde jsou data přístupná uživateli.
 
+![obrázky senzorů: CO, hořlavé plyny, plamen, teplota](senzory.png)
+
 Data zahrnují:
 - koncentraci CO v ppm (částice na milion)
 - koncentarci metanu v procentech
