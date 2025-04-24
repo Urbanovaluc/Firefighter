@@ -55,3 +55,15 @@ Laika je jedenáctičlenný tým studentů a studentek Softwarového inženýrst
 - Nela Haasová
 - Jan Chaloupka
 - Lukáš Proisl
+
+----
+
+### Co dál?
+
+Pro rozšíření funkcionality a tedy i aplikovatelnosti systému by bylo možné jej propojit se záběry SPOTových vestavěných kamer, nebo přidané kamery.
+
+Dále by bylo možné jej doplnit o přijímač GPS, tak aby bylo možné jeho aktuální polohu zakreslit do mapy.
+
+----
+
+![pes Laika](Laika.jpg)
